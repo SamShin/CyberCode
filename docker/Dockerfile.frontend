@@ -1,0 +1,24 @@
+# Frontend Dockerfile - Node 18 Alpine with Vite
+FROM node:18-alpine as builder
+
+WORKDIR /app
+
+# Copy package files
+COPY frontend/package*.json ./
+RUN npm ci
+
+# Copy source
+COPY frontend/src ./src
+COPY frontend/*.js ./
+COPY frontend/*.html ./
+
+# Build with Vite
+RUN npm run build
+
+# Serve with Nginx
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
