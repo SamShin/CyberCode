@@ -1,1 +1,0 @@
-"""VulnLens Backend - FastAPI application."""

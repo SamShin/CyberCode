@@ -1,0 +1,3 @@
+# Scan Rules
+
+Documentation stub.

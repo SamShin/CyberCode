@@ -1,0 +1,3 @@
+# Ai Prompts
+
+Documentation stub.
